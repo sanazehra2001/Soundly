@@ -3,6 +3,7 @@ import Grid from "@mui/material/Grid";
 import React, { useEffect, useState } from "react";
 import apiClient from "../services/api_clients";
 import SongCard from "./SongCard";
+import { Typography } from "@mui/material";
 
 // import {songs} = useSongs();
 
@@ -28,11 +29,15 @@ const SongGrid = () => {
   });
 
   return (
-    <ul>
-      {songs.map((song) => (
-        <li key={song.id}>{song.name}</li>
-      ))}
-    </ul>
+    <>
+      {error && <Typography>{error}</Typography>}
+      <ul>
+        {songs.map((song) => (
+          <li key={song.id}>{song.name}</li>
+        ))}
+      </ul>
+    </>
+
     // <Box sx={{ flexGrow: 1 }} bgcolor="greenyellow">
     //   <Grid container spacing={2} columns={3}>
     //     {songs.map((song) => (
