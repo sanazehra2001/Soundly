@@ -1,32 +1,8 @@
-import Box from "@mui/material/Box";
-import Grid from "@mui/material/Grid";
-import React, { useEffect, useState } from "react";
-import apiClient from "../services/api_clients";
-import SongCard from "./SongCard";
 import { Typography } from "@mui/material";
-
-// import {songs} = useSongs();
-
-interface Song {
-  id: number;
-  name: string;
-}
-
-interface FetchSongsResponse {
-  count: number;
-  results: Song[];
-}
+import useSongs from "../hooks/useSongs";
 
 const SongGrid = () => {
-  const [songs, setSongs] = useState<Song[]>([]);
-  const [error, setError] = useState("");
-
-  useEffect(() => {
-    apiClient
-      .get<FetchSongsResponse>("/games")
-      .then((res) => setSongs(res.data.results))
-      .catch((err) => setError(err.message));
-  });
+  const { songs, error } = useSongs();
 
   return (
     <>
@@ -37,14 +13,6 @@ const SongGrid = () => {
         ))}
       </ul>
     </>
-
-    // <Box sx={{ flexGrow: 1 }} bgcolor="greenyellow">
-    //   <Grid container spacing={2} columns={3}>
-    //     {songs.map((song) => (
-    //       <SongCard key={song.id} song={song.name} />
-    //     ))}
-    //   </Grid>
-    // </Box>
   );
 };
 
