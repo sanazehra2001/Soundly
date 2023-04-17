@@ -2,11 +2,18 @@ import { useEffect, useState } from "react";
 import apiClient from "../services/api_clients";
 import { CanceledError } from "axios";
 
+interface Platform {
+    id: number;
+    name: string;
+    slug: string;
+}
+
 export interface Song {
     id: number;
     name: string;
     background_image: string;
-  }
+    metacritic: number;
+}
 
 interface FetchSongsResponse {
     count: number;

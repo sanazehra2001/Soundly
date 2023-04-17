@@ -1,4 +1,4 @@
-import { Box, Grid, Typography } from "@mui/material";
+import { Box, Grid, ImageList, ImageListItem, Typography } from "@mui/material";
 import useSongs from "../hooks/useSongs";
 import SongCard from "./SongCard";
 
@@ -16,11 +16,9 @@ const SongGrid = () => {
         padding={1}
       >
         {songs.map((song) => (
-          <>
-            <Grid item xs={1} sm={1} lg={1} xl={1}>
-              <SongCard key={song.id} song={song} />
-            </Grid>
-          </>
+          <Grid item xs={1} sm={1} lg={1} xl={1}>
+            <SongCard key={song.id} song={song} />
+          </Grid>
         ))}
       </Grid>
     </>
