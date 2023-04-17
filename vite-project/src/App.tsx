@@ -1,48 +1,55 @@
 import Alert from "./components/Alert";
 import ListGroup from "./components/ListGroup";
-import Button from "./components/Button";
+//import Button from "./components/Button";
 
 import { useState } from "react";
 import Like from "./components/Like";
 
+import Button from "@mui/material/Button";
+
 function App() {
-  const items = [
-    "New Classical",
-    "Rock",
-    "Pop",
-    "Jazz",
-    "Hip Hop",
-    "Country",
-    "Electronic",
-    "Folk",
-    "Metal",
-  ];
+  // const items = [
+  //   "New Classical",
+  //   "Rock",
+  //   "Pop",
+  //   "Jazz",
+  //   "Hip Hop",
+  //   "Country",
+  //   "Electronic",
+  //   "Folk",
+  //   "Metal",
+  // ];
 
-  const handleSelectItem = (item: string) => {
-    console.log(item);
-  };
+  // const handleSelectItem = (item: string) => {
+  //   console.log(item);
+  // };
 
-  let [alertVisible, setAlertVisibility] = useState(false);
+  // let [alertVisible, setAlertVisibility] = useState(false);
 
   return (
     <>
-      {alertVisible && (
-        <Alert color="success" onClose={() => setAlertVisibility(false)}>
-          My Alert
-        </Alert>
-      )}
-
-      <Button onClick={() => setAlertVisibility(true)}>My Button</Button>
-      <Like onClick={() => console.log("clicked")} />
-
-      <div>
-        <ListGroup
-          items={items}
-          heading="Genres"
-          onSelectItem={handleSelectItem}
-        />
-      </div>
+      <Button variant="text">Text</Button>
+      <Button variant="contained">Contained</Button>
+      <Button variant="outlined">Outlined</Button>
     </>
+    // <>
+    //   {alertVisible && (
+    //     <Alert color="success" onClose={() => setAlertVisibility(false)}>
+    //       My Alert
+    //     </Alert>
+    //   )}
+
+    //   <Button onClick={() => setAlertVisibility(true)}>My Button</Button>
+    //   <Like onClick={() => console.log("clicked")} />
+
+    //   <div>
+    //     <ListGroup
+    //       items={items}
+    //       heading="Genres"
+    //       onSelectItem={handleSelectItem}
+    //     />
+    //   </div>
+    // </>
   );
 }
 
