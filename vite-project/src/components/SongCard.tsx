@@ -24,12 +24,13 @@ interface Props {
 
 const SongCard = ({ song }: Props) => {
   return (
-    <Card variant="outlined" component="img">
+    <Card variant="outlined">
       <Image src={song.background_image}></Image>
+      <Typography variant="h6" color="inherit" component="div" padding={1.5}>
+        {song.name}
+      </Typography>
       <CardActionArea>
-        <Stack direction="row">
-          <Typography>{song.name}</Typography>
-          <PlaylistAddRoundedIcon />
+        <Stack>
           <PlayCircleOutlineRoundedIcon />
         </Stack>
       </CardActionArea>
