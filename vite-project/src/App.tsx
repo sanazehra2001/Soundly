@@ -6,6 +6,7 @@ import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
 import Navbar from "./components/Navbar";
+import SongGrid from "./components/SongGrid";
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -18,16 +19,28 @@ const Item = styled(Paper)(({ theme }) => ({
 export default function App() {
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <Grid container spacing={2}>
+      <Grid
+        container
+        spacing={{ xs: 1, lg: 2 }}
+        columns={{ xs: 1, md: 4, lg: 4 }}
+      >
         <Grid item xs={12}>
           <Navbar />
         </Grid>
 
-        <Grid item xs={6} md={4}>
-          <Item>xs=6 md=4</Item>
+        <Grid item xs={0} md={1}>
+          <Box
+            component={Grid}
+            item
+            xs={0}
+            display={{ xs: "none", md: "block" }}
+          >
+            <Item>Side Bar Menu</Item>
+          </Box>
         </Grid>
-        <Grid item xs={6} md={4}>
-          <Item>xs=6 md=4</Item>
+
+        <Grid item xs={1} md={3}>
+          <SongGrid />
         </Grid>
       </Grid>
     </Box>
