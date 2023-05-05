@@ -7,47 +7,53 @@ import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
 import Navbar from "./components/Navbar";
 import SongGrid from "./components/SongGrid";
+import bg from "./assets/bg.jpg";
+import Typography from "@mui/material/Typography";
 
-const Item = styled(Paper)(({ theme }) => ({
-  backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
-  ...theme.typography.body2,
-  padding: theme.spacing(1),
-  textAlign: "center",
-  color: theme.palette.text.secondary,
-}));
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { RouteProps } from "react-router-dom";
+import Like from "./components/Like";
+import SongCard from "./components/SongCard";
+import PlaylistScore from "./components/PlaylistScore";
 
-export default function App() {
-  return (
-    <Box sx={{ flexGrow: 1 }}>
-      <Grid
-        container
-        spacing={{ xs: 1, lg: 2 }}
-        columns={{ xs: 1, md: 4, lg: 4 }}
-      >
-        <Grid item xs={12}>
-          <Navbar />
-        </Grid>
+import routes from "./routes";
+import { useRoutes } from "react-router-dom";
 
-        <Grid item xs={0} md={1}>
-          <Box
-            component={Grid}
-            item
-            xs={0}
-            display={{ xs: "none", md: "block" }}
-          >
-            <Item>Side Bar Menu</Item>
-          </Box>
-        </Grid>
+const App = () => {
+  const content = useRoutes(routes);
+  return content;
+};
 
-        <Grid item xs={1} md={3}>
-          <SongGrid />
-        </Grid>
-      </Grid>
-    </Box>
-  );
-}
+export default App;
 
-// import Alert from "./components/Alert";
+/* <Box sx={{ flexGrow: 1 }}>
+       <Grid
+         container
+         spacing={{ xs: 1, lg: 2 }}
+         columns={{ xs: 1, md: 4, lg: 4 }}
+       >
+         <Grid item xs={12}>
+           <Navbar />
+         </Grid>
+
+         <Grid item xs={0} md={1}>
+           <Box
+             component={Grid}
+             item
+             xs={0}
+             display={{ xs: "none", md: "block" }}
+           >
+             <Item>Side Bar Menu</Item>
+           </Box>
+         </Grid>
+
+         <Grid item xs={1} md={3}>
+           <SongGrid />
+         </Grid>
+       </Grid>
+     </Box> */
+
+/* // import Alert from "./components/Alert";
 // import ListGroup from "./components/ListGroup";
 // //import Button from "./components/Button";
 
@@ -56,8 +62,8 @@ export default function App() {
 
 // import Button from "@mui/material/Button";
 
-// function App() {
-//   // const items = [
+// function App() { */
+/* //   // const items = [
 //   //   "New Classical",
 //   //   "Rock",
 //   //   "Pop",
@@ -70,8 +76,8 @@ export default function App() {
 //   // ];
 
 //   // const handleSelectItem = (item: string) => {
-//   //   console.log(item);
-//   // };
+//   //   console.log(item); */
+/* //   // };
 
 //   // let [alertVisible, setAlertVisibility] = useState(false);
 
@@ -112,5 +118,6 @@ export default function App() {
 //     // </>
 //   );
 // }
-
-// export default App
+*/
+//   );
+// }

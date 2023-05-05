@@ -21,6 +21,7 @@ import IconButton from "@mui/material/IconButton";
 import Box from "@mui/material/Box";
 import { CardContent, CardMedia } from "@mui/material";
 import PlaylistScore from "./PlaylistScore";
+import Like from "./Like";
 
 interface Props {
   song: Song;
@@ -38,7 +39,6 @@ const SongCard = ({ song }: Props) => {
       <Box sx={{ display: "flex", alignItems: "center", pl: 1, pb: 1 }}>
         <PlayCircleOutlineRoundedIcon />
       </Box>
-      {/* <PlaylistScore score={song.metacritic} /> */}
     </Card>
   );
 };

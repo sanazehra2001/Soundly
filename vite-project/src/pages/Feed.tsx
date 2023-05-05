@@ -1,0 +1,39 @@
+import Box from "@mui/material/Box";
+import Grid from "@mui/material/Grid";
+import SongGrid from "../components/SongGrid";
+import Navbar from "../components/Navbar";
+
+const Feed = () => {
+  return (
+    <>
+      <Box sx={{ flexGrow: 1 }}>
+        <Grid
+          container
+          spacing={{ xs: 1, lg: 2 }}
+          columns={{ xs: 1, md: 4, lg: 4 }}
+        >
+          <Grid item xs={12}>
+            <Navbar />
+          </Grid>
+
+          <Grid item xs={0} md={1}>
+            <Box
+              component={Grid}
+              item
+              xs={0}
+              display={{ xs: "none", md: "block" }}
+            >
+              <div>Side Bar Menu</div>
+            </Box>
+          </Grid>
+
+          <Grid item xs={1} md={3}>
+            <SongGrid />
+          </Grid>
+        </Grid>
+      </Box>
+    </>
+  );
+};
+
+export default Feed;
