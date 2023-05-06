@@ -28,7 +28,6 @@ const Feed = () => {
           </Grid>
 
           <Grid item xs={1} md={3}>
-
             <SongGrid />
           </Grid>
         </Grid>
