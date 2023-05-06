@@ -1,118 +1,86 @@
-import Box from "@mui/material/Box";
-import TextField from "@mui/material/TextField";
-import React from "react";
-import IconButton from "@mui/material/IconButton";
-import OutlinedInput from "@mui/material/OutlinedInput";
-import InputLabel from "@mui/material/InputLabel";
-import InputAdornment from "@mui/material/InputAdornment";
-import FormControl from "@mui/material/FormControl";
-import Visibility from "@mui/icons-material/Visibility";
-import VisibilityOff from "@mui/icons-material/VisibilityOff";
-import FormHelperText from "@mui/material/FormHelperText";
+import React, { FormEvent, useRef, useState } from "react";
+import { FieldValues, useForm } from "react-hook-form";
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
 import Button from "@mui/material/Button";
+import "../form.css";
+
+const schema = z.object({
+  uname: z
+    .string()
+    .min(3, { message: "Username must be atleast 3 characters." }),
+  password: z
+    .string()
+    .min(8, { message: "Password must be atleast 8 characters." }),
+});
+
+type FormData = z.infer<typeof schema>;
 
 const Form = () => {
-  const [showPassword, setShowPassword] = React.useState(false);
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isValid },
+  } = useForm<FormData>({ resolver: zodResolver(schema) });
 
-  const handleClickShowPassword = () => setShowPassword((show) => !show);
-
-  const handleMouseDownPassword = (
-    event: React.MouseEvent<HTMLButtonElement>
-  ) => {
-    event.preventDefault();
-  };
+  const onSubmit = (data: FieldValues) => console.log(data);
 
   return (
-    <Box
-      component="form"
-      padding={2.5}
-      sx={{
-        "& .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": {
-          borderColor: "#FCBCD7",
-        },
-
-        "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline":
-          {
-            borderColor: "#F5537C",
-          },
-
-        "& label": {
-          color: "#FFDCE7",
-        },
-
-        "& label.Mui-focused": {
-          color: "#FFF6F6",
-        },
-
-        "& .MuiOutlinedInput-root": {
-          "&:hover fieldset": {
-            borderColor: "#FE7F9B",
-            borderWidth: "0.15rem",
-          },
-        },
-
-        "& .MuiIconButton-root": {
-          color: "#FFDCE7",
-        },
-
-        input: { color: "white" },
-      }}
-      noValidate
-      autoComplete="off"
-    >
-      <div>
-        {/* Username Input */}
-        <FormControl sx={{ m: 1, width: "25ch" }} variant="outlined">
-          <InputLabel htmlFor="username">Username</InputLabel>
-          <OutlinedInput required id="outlined-helperText" label="Username" />
-        </FormControl>
-
-        {/* Password Input */}
-        <FormControl sx={{ m: 1, width: "25ch" }} variant="outlined">
-          <InputLabel htmlFor="password">Password</InputLabel>
-          <OutlinedInput
-            id="outlined-adornment-password"
-            type={showPassword ? "text" : "password"}
-            endAdornment={
-              <InputAdornment position="end">
-                <IconButton
-                  aria-label="toggle password visibility"
-                  onClick={handleClickShowPassword}
-                  onMouseDown={handleMouseDownPassword}
-                  edge="end"
-                >
-                  {showPassword ? <VisibilityOff /> : <Visibility />}
-                </IconButton>
-              </InputAdornment>
-            }
-            label="Password"
-          />
-        </FormControl>
+    <form onSubmit={handleSubmit(onSubmit)}>
+      <div className="mb-3">
+        <label htmlFor="uname" className="form-label">
+          Username
+        </label>
+        <input
+          {...register("uname")}
+          id="uname"
+          type="text"
+          className="form-control"
+          placeholder="Username"
+        />
+        {errors.uname && <p className="form-label">{errors.uname.message}</p>}
       </div>
-      <div>
-        <Button
-          style={{
-            borderRadius: 5,
-            backgroundColor: "#F5537C",
-          }}
-          sx={{ m: 1, width: "27ch" }}
-          variant="contained"
-        >
-          Sign Up
-        </Button>
 
-        <Button
-          style={{
-            borderRadius: 5,
-            backgroundColor: "#F5537C",
-          }}
-          sx={{ m: 1, width: "27ch" }}
-          variant="contained"
-        >
-          Login
-        </Button>
+      <div className="mb-3">
+        <label htmlFor="password" className="form-label">
+          Password
+        </label>
+        <input
+          {...register("password")}
+          id="password"
+          type="password"
+          className="form-control"
+          placeholder="********"
+        />
+        {errors.password && (
+          <p className="form-label">{errors.password.message}</p>
+        )}
       </div>
-    </Box>
+
+      <Button
+        variant="contained"
+        type="submit"
+        sx={{ m: 1, width: "27ch" }}
+        style={{
+          borderRadius: 5,
+          backgroundColor: "#F5537C",
+        }}
+      >
+        Signup
+      </Button>
+
+      <Button
+        variant="contained"
+        type="submit"
+        sx={{ m: 1, width: "27ch" }}
+        style={{
+          borderRadius: 5,
+          backgroundColor: "#F5537C",
+        }}
+      >
+        Login
+      </Button>
+    </form>
   );
 };
 
