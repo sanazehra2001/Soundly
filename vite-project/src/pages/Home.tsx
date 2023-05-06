@@ -17,9 +17,9 @@ const Home = () => {
       >
         <Navbar />
 
-        <Box style={{ display: "flex", justifyContent: "space-between" }}>
-          <Box>
-            <Typography variant="h1" color="white" padding={1.5}>
+        <Box style={{height:"60vh", display: "flex", justifyContent: "space-between"}}>
+          <Box style={{ display: "flex", flexDirection:"column", justifyContent: "flex-end"}}>
+            <Typography variant="h1" color="white" padding={2.5} paddingBottom={0}>
               TuneFlow
             </Typography>
             <Typography variant="h5" color="#FCBCD7" padding={3.5}>
@@ -27,35 +27,20 @@ const Home = () => {
             </Typography>
           </Box>
 
-          <Box
-            display="flex"
-            flexDirection="column"
-            alignItems="center"
-            justifyContent="center"
-            paddingRight={1}
-            paddingTop={5}
-          >
-            <Box
-              style={{
-                border: "4px solid #F5537C",
-                borderRadius: 15,
-              }}
-            >
-              <Typography
-                variant="h5"
+          <Box paddingTop={5} paddingRight={2} style={{ display: "flex", flexDirection:"column", justifyContent: "flex-start"}}>
+            <Box style={{border:"2px solid pink", borderRadius:"25px", borderColor:"#F5537C"}}>
+              <Typography variant="h4"
+                paddingTop={2}
                 color="white"
-                padding={2}
-                paddingBottom={0}
                 sx={{
-                  mr: 2,
+                  ml: 4,
                   display: { xs: "none", md: "flex" },
                   fontFamily: "roboto",
                   fontWeight: 400,
                   letterSpacing: ".2rem",
                   textDecoration: "none",
-                }}
-              >
-                Sign Up or Login
+                }}>
+              SignUp or Login
               </Typography>
               <Form />
             </Box>

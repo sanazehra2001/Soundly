@@ -97,7 +97,6 @@ const Form = () => {
           }}
           sx={{ m: 1, width: "27ch" }}
           variant="contained"
-          color="secondary"
         >
           Sign Up
         </Button>
