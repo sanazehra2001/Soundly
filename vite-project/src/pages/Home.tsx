@@ -5,8 +5,11 @@ import Navbar from "../components/Navbar";
 import Form from "../components/Form";
 
 import bg from "../assets/bg.jpg";
+import { useNavigate } from "react-router-dom";
 
 const Home = () => {
+  const navigate = useNavigate();
+
   return (
     <>
       <Box
@@ -76,7 +79,12 @@ const Home = () => {
               >
                 SignUp or Login
               </Typography>
-              <Form />
+              <Form
+                onSubmit={(data) => {
+                  console.log(data);
+                  navigate("/feed");
+                }}
+              />
             </Box>
           </Box>
         </Box>

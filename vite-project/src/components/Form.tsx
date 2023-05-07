@@ -1,32 +1,58 @@
-import React, { FormEvent, useRef, useState } from "react";
+// React Imports
+import React from "react";
 import { FieldValues, useForm } from "react-hook-form";
+
+// Zod Imports
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
+
+// MaterialUI Imports
 import Button from "@mui/material/Button";
+import Snackbar from "@mui/material/Snackbar";
+import MuiAlert, { AlertProps } from "@mui/material/Alert";
+
+// CSS Imports
 import "../form.css";
 
+interface Props {
+  onSubmit: (data: FormData) => void;
+}
+
+// Zod Schema Validation
 const schema = z.object({
   uname: z
     .string()
-    .min(3, { message: "Username must be atleast 3 characters." }),
+    .min(5, { message: "Username must be atleast 5 characters." }),
   password: z
     .string()
     .min(8, { message: "Password must be atleast 8 characters." }),
 });
 
+const Alert = React.forwardRef<HTMLDivElement, AlertProps>(function Alert(
+  props,
+  ref
+) {
+  return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+});
+
+// Interface for form data
 type FormData = z.infer<typeof schema>;
 
-const Form = () => {
+const Form = ({ onSubmit }: Props) => {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors, isValid },
   } = useForm<FormData>({ resolver: zodResolver(schema) });
 
-  const onSubmit = (data: FieldValues) => console.log(data);
-
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form
+      onSubmit={handleSubmit((data) => {
+        onSubmit(data);
+        reset();
+      })}
+    >
       <div className="mb-3">
         <label htmlFor="uname" className="form-label">
           Username
@@ -58,6 +84,7 @@ const Form = () => {
       </div>
 
       <Button
+        id="sign-up"
         variant="contained"
         type="submit"
         sx={{ m: 1, width: "27ch" }}
@@ -70,6 +97,7 @@ const Form = () => {
       </Button>
 
       <Button
+        id="login"
         variant="contained"
         type="submit"
         sx={{ m: 1, width: "27ch" }}
