@@ -1,35 +1,28 @@
+import { CanceledError } from "axios";
 import { useEffect, useState } from "react";
 import apiClient from "../services/api_clients";
-import { CanceledError } from "axios";
 
-interface Platform {
+interface Genre {
     id: number;
     name: string;
-    slug: string;
 }
 
-export interface Song {
-    id: number;
-    name: string;
-    background_image: string;
-    metacritic: number;
-}
-
-interface FetchSongsResponse {
+interface FetchGenresResponse {
     count: number;
-    results: Song[];
+    results: Genre[];
 }
-  
-const useSongs = () => {
-    const [songs, setSongs] = useState<Song[]>([]);
+
+const useGenres = () => {
+    const [genres, setGenres] = useState<Genre[]>([]);
     const [error, setError] = useState("");
 
     useEffect(() => {
         const controller = new AbortController();
+
       apiClient
-        .get<FetchSongsResponse>("/games", {signal: controller.signal})
+        .get<FetchGenresResponse>("/genres", {signal: controller.signal})
         .then((res) => {
-            setSongs(res.data.results);
+            setGenres(res.data.results);
         })
         .catch((err) => {
             if (err instanceof CanceledError) return;
@@ -38,8 +31,7 @@ const useSongs = () => {
         return () => controller.abort();
     }, []);
 
-    return {songs, error}
-  
-}
+    return {genres, error}
+};
 
-export default useSongs;
+export default useGenres;

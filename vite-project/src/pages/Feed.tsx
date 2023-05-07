@@ -2,6 +2,7 @@ import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import SongGrid from "../components/SongGrid";
 import Navbar from "../components/Navbar";
+import GenreList from "../components/GenreList";
 
 const Feed = () => {
   return (
@@ -23,7 +24,7 @@ const Feed = () => {
               xs={0}
               display={{ xs: "none", md: "block" }}
             >
-              <div>Side Bar Menu</div>
+              <GenreList />
             </Box>
           </Grid>
 
